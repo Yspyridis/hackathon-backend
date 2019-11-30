@@ -10,4 +10,4 @@ class CoordinateImportExport(ImportExportModelAdmin):
     class Meta:
         model = Coordinate
 
-admin.site.register(Coordinate) #, CoordinateImportExport)
+admin.site.register(Coordinate, CoordinateImportExport)
