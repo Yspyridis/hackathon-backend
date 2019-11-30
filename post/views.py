@@ -39,8 +39,13 @@ class FarmsApiView(generics.ListCreateAPIView):
             natura_points.append(Point(polygon.x, polygon.y))
 
         distances = []
+
         for farm in request.data:
-#            print(farm)
+
+            # '''
+            print(str(farm['name']))
+            print(str(farm['type']))
+
 
             x1 = int(farm['x1'])
             x2 = int(farm['x2'])
@@ -59,5 +64,5 @@ class FarmsApiView(generics.ListCreateAPIView):
 
             print(distances)
             print("Minimum: " + str(min(distances)))
-
+            # '''
         return Response("farms selected")
