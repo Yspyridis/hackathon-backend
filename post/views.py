@@ -41,10 +41,20 @@ class FarmsApiView(generics.ListCreateAPIView):
 
         #parse the list, validate each entry and save to database
         for farm in request.data:
-            print(farm['lon'])
-            P = Polygon([[0, 0], [1, 0], [1, 1], [0, 1]])
+            print(farm)
+
+            x1 = int(farm['x1'])
+            x2 = int(farm['x2'])
+            x3 = int(farm['x3'])
+            x4 = int(farm['x4'])
+            y1 = int(farm['y1'])
+            y2 = int(farm['y2'])
+            y3 = int(farm['y3'])
+            y4 = int(farm['y4'])
+
+            P = Polygon( [(x1, y1), (x2, y2), (x3, y3), (x4, y4)] )
             point = P.centroid
 
             print(point)
 
-        return Response("farms were created")
+        return Response("farms were selected")
