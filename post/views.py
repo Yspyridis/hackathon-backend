@@ -33,15 +33,14 @@ class FarmsApiView(generics.ListCreateAPIView):
     def post(self, request, *args, **kwargs):
         import json
 
-        polygons = [Polygon([(30, 0), (2,8), (14, 10), (6, 1)]), Polygon([(0, 0), (5,6), (8, 12), (3, 4)]), Polygon([(0, 0), (5,8), (1, 10), (2, 100)])]
+        natura_points = []
+        polygons = Coordinate.objects.all()
+        for polygon in polygons:
+            natura_points.append(Point(polygon.x, polygon.y))
 
         distances = []
-
-        print(distances)
-
-        #parse the list, validate each entry and save to database
         for farm in request.data:
-            print(farm)
+#            print(farm)
 
             x1 = int(farm['x1'])
             x2 = int(farm['x2'])
@@ -55,6 +54,10 @@ class FarmsApiView(generics.ListCreateAPIView):
             P = Polygon( [(x1, y1), (x2, y2), (x3, y3), (x4, y4)] )
             point = P.centroid
 
-            print(point)
+            for natura_point in natura_points:
+                distances.append(point.distance(natura_point))
 
-        return Response("farms were selected")
+            print(distances)
+            print("Minimum: " + str(min(distances)))
+
+        return Response("farms selected")

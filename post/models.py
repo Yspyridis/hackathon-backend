@@ -7,3 +7,7 @@ class Coordinate(models.Model):
     name = models.CharField('name', max_length=10)
     x = models.FloatField(blank=True, null=True)
     y = models.FloatField(blank=True, null=True)
+
+
+    def __str__(self):
+        return str('{0} {1} {2}' .format(self.name, self.x, self.y))
