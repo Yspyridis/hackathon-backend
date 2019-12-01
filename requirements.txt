@@ -1,0 +1,7 @@
+django
+django-cors-headers
+django-import-export
+psycopg2
+django-rest-framework
+djangorestframework-jwt
+shapely

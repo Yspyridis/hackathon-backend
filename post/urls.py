@@ -7,5 +7,6 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     #REST API
-    path('farms-api/', FarmsApiView.as_view(), name="farms-api-create"),
+    path('farms/', FarmsApiView.as_view(), name="farms-api-create"),
+
 ]

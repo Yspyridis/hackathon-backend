@@ -11,3 +11,17 @@ class Coordinate(models.Model):
 
     def __str__(self):
         return str('{0} {1} {2}' .format(self.name, self.x, self.y))
+
+
+class farms(models.Model):
+
+    farm_name = models.CharField(max_length=500)
+    corp_type = models.CharField(max_length=500)
+    cords = models.CharField(max_length=500)
+
+    farm_center = models.CharField(max_length=500)
+    sustainable = models.BooleanField(blank=True, null=True)
+
+    def __str__(self):
+        return str('{0} {1} {2}' .format(self.farm_name, self.corp_type, self.sustainable))
+
