@@ -63,7 +63,7 @@ class FarmsApiView(generics.ListCreateAPIView):
             results['name'] = farm_name
             results['farm_center'] = str(point)
 
-            if min(distances) >= 30: #  this is hardcoded
+            if min(distances) >= 20: #  this is hardcoded
                 results['sustainable'] = "SUSTAINABLE"
                 sustainable = True
             else:
@@ -73,5 +73,5 @@ class FarmsApiView(generics.ListCreateAPIView):
         newFarm = farms(farm_name = farm_name, corp_type = farm_type, cords = str(points), farm_center = (str(point)), sustainable = sustainable)
         newFarm.save()
 
-        queryset = farms.objects.all().values()
-        return JsonResponse({'results': list(queryset)})
+        # queryset = farms.objects.all().values()
+        return JsonResponse(results)
