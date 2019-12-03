@@ -41,7 +41,7 @@ class FarmsApiView(generics.ListCreateAPIView):
         polygons = Coordinate.objects.all()
         for polygon in polygons:
             natura_points.append(Point(polygon.x, polygon.y))
-		
+
         distances = []
         results = {}
         for farm in request.data:
@@ -57,13 +57,13 @@ class FarmsApiView(generics.ListCreateAPIView):
 
             P = Polygon( points )
             point = P.centroid
-            
+
             for natura_point in natura_points:
                 distances.append(point.distance(natura_point))
             results['name'] = farm_name
             results['farm_center'] = str(point)
- 
-            if min(distances) >= 5: #  this is hardcoded
+
+            if min(distances) >= 20: #  this is hardcoded
                 results['sustainable'] = "SUSTAINABLE"
                 sustainable = True
             else:
@@ -72,8 +72,6 @@ class FarmsApiView(generics.ListCreateAPIView):
 
         newFarm = farms(farm_name = farm_name, corp_type = farm_type, cords = str(points), farm_center = (str(point)), sustainable = sustainable)
         newFarm.save()
-	
-        queryset = farms.objects.all().values()
-        return JsonResponse({'results': list(queryset)})
-	
-	
+
+        # queryset = farms.objects.all().values()
+        return JsonResponse(results)

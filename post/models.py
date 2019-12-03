@@ -20,8 +20,7 @@ class farms(models.Model):
     cords = models.CharField(max_length=500)
 
     farm_center = models.CharField(max_length=500)
-    sustainable = models.BooleanField(blank=True, null=True)
+    sustainable = models.BooleanField(blank=True)
 
     def __str__(self):
         return str('{0} {1} {2}' .format(self.farm_name, self.corp_type, self.sustainable))
-
